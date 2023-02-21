@@ -8,8 +8,7 @@ export default function DayList({ days, value, onChange }) {
       {days.map((day) => (
         <DayListItem
           key={day.id}
-          name={day.name}
-          spots={day.spots}
+          {...day}
           selected={day.name === value}
           setDay={() => {
             onChange(day.id);
