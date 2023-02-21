@@ -4,23 +4,13 @@ import classNames from "classnames";
 
 import "./InterviewerListItem.scss";
 
-const InterviewerListItem = ({
-  id,
-  name,
-  avatar,
-  selected,
-  setInterviewer,
-}) => {
+const InterviewerListItem = ({ name, avatar, selected, onChange }) => {
   const interviewerClass = classNames("interviewers__item", {
     "interviewers__item--selected": selected,
   });
+
   return (
-    <li
-      className={interviewerClass}
-      onClick={() => {
-        setInterviewer(id);
-      }}
-    >
+    <li className={interviewerClass} onClick={onChange}>
       <img
         className="interviewers__item-image"
         src={avatar}
