@@ -14,7 +14,7 @@ const InterviewerList = ({ interviewers, onChange, value }) => {
             key={interviewer.id}
             name={interviewer.name}
             avatar={interviewer.avatar}
-            selected={interviewer.name === value}
+            selected={interviewer.id === value}
             setInterviewer={() => {
               onChange(interviewer.id);
             }}
