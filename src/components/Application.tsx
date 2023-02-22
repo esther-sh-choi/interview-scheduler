@@ -4,16 +4,34 @@ import Axios from "axios";
 
 import "components/Application.scss";
 
-import Appointment from "./Appointment";
-import DayList from "./DayList.tsx";
+import Appointment from "./Appointment/index.js";
+import DayList from "./DayList";
 import {
   getAppointmentsForDay,
   getInterview,
   getInterviewersForDay,
 } from "helpers/selectors";
 
-export default function Application(props) {
-  const [state, setState] = useState({
+interface AppointmentState {
+  day: "Monday" | "Tuesday" | "Wednesday" | "Thursday" | "Friday";
+  days: {
+    id: number;
+    name: "Monday" | "Tuesday" | "Wednesday" | "Thursday" | "Friday";
+    appointments: number[];
+    interviewers: number[];
+    spots: number;
+  }[];
+  appointments: {
+    [key: number]: {
+      id: number;
+      time: string;
+      interview: { student: string; interviwer: number };
+    };
+  };
+}
+
+const Application = () => {
+  const [state, setState] = useState<AppointmentState>({
     day: "Monday",
     days: [],
     appointments: {},
@@ -22,22 +40,32 @@ export default function Application(props) {
   const appointments = getAppointmentsForDay(state, state.day);
   const interviewers = getInterviewersForDay(state, state.day);
 
-  const schedule = appointments.map((appointment) => {
-    const interview = getInterview(state, appointment.interview);
-    return (
-      <Appointment
-        key={appointment.id}
-        id={appointment.id}
-        time={appointment.time}
-        interview={interview}
-        interviewers={interviewers}
-      />
-    );
-  });
+  const schedule = appointments.map(
+    (appointment: {
+      interview: { student: string; interviewer: number };
+      id: number;
+      time: string;
+    }) => {
+      const interview = getInterview(state, appointment.interview);
+      return (
+        <Appointment
+          key={appointment.id}
+          id={appointment.id}
+          time={appointment.time}
+          interview={interview}
+          interviewers={interviewers}
+        />
+      );
+    }
+  );
 
-  const setDay = (day) => {
+  const setDay = (
+    day: "Monday" | "Tuesday" | "Wednesday" | "Thursday" | "Friday"
+  ) => {
     setState(Object.assign({}, state, { day }));
   };
+
+  console.log(state);
 
   useEffect(() => {
     Promise.all([
@@ -78,4 +106,6 @@ export default function Application(props) {
       </section>
     </main>
   );
-}
+};
+
+export default Application;

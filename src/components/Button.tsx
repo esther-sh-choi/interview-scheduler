@@ -1,4 +1,4 @@
-import React, { FC, MouseEventHandler } from "react";
+import React, { MouseEventHandler } from "react";
 
 import classNames from "classnames";
 
@@ -22,6 +22,8 @@ const Button = ({
   children,
 }: ButtonProps): JSX.Element => {
   // const { onClick, disabled, confirm, danger, children } = props;
+
+  console.log(clickable);
 
   const buttonClass = classNames("button", {
     "button--confirm": confirm,

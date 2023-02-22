@@ -6,18 +6,14 @@ import "./DayListItem.scss";
 
 type DayListItemProps = {
   selected: boolean;
-  spots?: number;
+  spots: number;
   name: string;
-  // setDay: React.Dispatch<React.SetStateAction<string>>;
   setDay: MouseEventHandler<HTMLLIElement>;
 };
 
-const DayListItem = ({
-  selected,
-  spots,
-  name,
-  setDay,
-}: DayListItemProps): JSX.Element => {
+const DayListItem = (props: DayListItemProps): JSX.Element => {
+  const { selected, spots, name, setDay } = props;
+
   const dayClass = classNames("day-list__item", {
     "day-list__item--selected": selected,
     "day-list__item--full": !spots,
