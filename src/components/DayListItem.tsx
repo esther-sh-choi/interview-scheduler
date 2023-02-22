@@ -1,10 +1,23 @@
-import React from "react";
+import React, { MouseEventHandler } from "react";
 
 import classNames from "classnames";
 
 import "./DayListItem.scss";
 
-export default function DayListItem({ selected, spots, name, setDay }) {
+type DayListItemProps = {
+  selected: boolean;
+  spots?: number;
+  name: string;
+  // setDay: React.Dispatch<React.SetStateAction<string>>;
+  setDay: MouseEventHandler<HTMLLIElement>;
+};
+
+const DayListItem = ({
+  selected,
+  spots,
+  name,
+  setDay,
+}: DayListItemProps): JSX.Element => {
   const dayClass = classNames("day-list__item", {
     "day-list__item--selected": selected,
     "day-list__item--full": !spots,
@@ -28,4 +41,6 @@ export default function DayListItem({ selected, spots, name, setDay }) {
       <h3 className="text--light">{formatSpots()}</h3>
     </li>
   );
-}
+};
+
+export default DayListItem;

@@ -1,24 +1,26 @@
-import React, { MouseEventHandler } from "react";
+import React, { FC, MouseEventHandler } from "react";
 
 import classNames from "classnames";
 
 import "components/Button.scss";
 
-interface ButtonProps {
+type ButtonProps = {
   onClick: MouseEventHandler<HTMLButtonElement>;
   disabled: boolean;
   confirm: boolean;
   danger: boolean;
-  children: String;
-}
+  children: string;
+  clickable: boolean;
+};
 
-const Button: React.FC<ButtonProps> = ({
+const Button = ({
   onClick,
   disabled,
   confirm,
   danger,
+  clickable,
   children,
-}) => {
+}: ButtonProps): JSX.Element => {
   // const { onClick, disabled, confirm, danger, children } = props;
 
   const buttonClass = classNames("button", {

@@ -5,7 +5,7 @@ import Axios from "axios";
 import "components/Application.scss";
 
 import Appointment from "./Appointment";
-import DayList from "./DayList";
+import DayList from "./DayList.tsx";
 import {
   getAppointmentsForDay,
   getInterview,

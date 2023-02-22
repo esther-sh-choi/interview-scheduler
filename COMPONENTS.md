@@ -19,8 +19,8 @@
 ### Button
 
 - State: NO STATE
-- Props: confirm (boolean), disabled (boolean), danger, boolean, onClick (function), clickable
-- Used by: EVERYONE
+- Props: confirm (boolean), disabled (boolean), danger (boolean), onClick (function), clickable(boolean)
+- Used by: Form, Confirm
 
 ### DayList
 
@@ -30,9 +30,9 @@
 
 ### DayListItem
 
-- State:
-- Props:
-- Used by:
+- State: NO STATE
+- Props: selected (boolean), spots (number), name (string), setDay(React.Dispatch<React.SetStateAction<"Monday" | "Tuesday" | "Wednesday" | "Thursday" | "Friday">>)
+- Used by: DayList
 
 ### InterviewerList
 
