@@ -17,8 +17,7 @@ const Form = (props) => {
     reset();
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSubmit = () => {
     props.onSave(student, interviewer);
   };
 
