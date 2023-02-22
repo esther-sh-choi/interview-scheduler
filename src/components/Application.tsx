@@ -65,8 +65,6 @@ const Application = () => {
     setState(Object.assign({}, state, { day }));
   };
 
-  console.log(state);
-
   useEffect(() => {
     Promise.all([
       Axios.get("/api/days"),

@@ -24,14 +24,14 @@
 
 ### DayList
 
-- State:
-- Props:
-- Used by:
+- State: NO STATE
+- Props: selected (boolean), spots (number), name (string), setDay(function that accepts day paramenter)
+- Used by: Application
 
 ### DayListItem
 
 - State: NO STATE
-- Props: selected (boolean), spots (number), name (string), setDay(React.Dispatch<React.SetStateAction<"Monday" | "Tuesday" | "Wednesday" | "Thursday" | "Friday">>)
+- Props: selected (boolean), spots (number), name (string), setDay(function that points to setDay in DayList)
 - Used by: DayList
 
 ### InterviewerList
