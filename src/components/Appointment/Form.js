@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import InterviewerList from "components/InterviewerList";
-import Button from "components/Button";
+import Button from "components/Button.tsx";
 
 const Form = (props) => {
   const [student, setStudent] = useState(props.student || "");

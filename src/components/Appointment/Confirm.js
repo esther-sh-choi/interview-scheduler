@@ -1,6 +1,6 @@
 import React from "react";
 
-import Button from "components/Button";
+import Button from "components/Button.tsx";
 
 const Confirm = ({ message, onConfirm, onCancel }) => {
   return (
