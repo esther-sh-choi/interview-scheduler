@@ -1,9 +1,9 @@
 import React from "react";
 
 import "./styles.scss";
-import Header from "./Header";
-import Show from "./Show";
-import Empty from "./Empty";
+import Header from "./Header.tsx";
+import Show from "./Show.tsx";
+import Empty from "./Empty.tsx";
 import Form from "./Form.tsx";
 
 import useVisualMode from "hooks/useVisualMode";
@@ -20,7 +20,7 @@ const Appointment = (props) => {
 
   const handleSave = (student, interviewer) => {
     console.log(student, interviewer);
-    transition(EDIT);
+    transition(SHOW);
   };
 
   return (
@@ -28,7 +28,12 @@ const Appointment = (props) => {
       <Header time={time} />
       {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
       {mode === SHOW && (
-        <Show student={interview.student} interviewer={interview.interviewer} />
+        <Show
+          student={interview.student}
+          interviewer={interview.interviewer}
+          onEdit={() => transition(EDIT)}
+          onDelete={() => transition(EMPTY)}
+        />
       )}
       {mode === CREATE && (
         <Form interviewers={interviewers} onSave={handleSave} onCancel={back} />
@@ -38,7 +43,7 @@ const Appointment = (props) => {
           interviewers={interviewers}
           student={interview.student}
           interviewer={interview.interviewer}
-          onSave={transition(EDIT)}
+          onSave={transition(SHOW)}
           onCancel={back}
         />
       )}

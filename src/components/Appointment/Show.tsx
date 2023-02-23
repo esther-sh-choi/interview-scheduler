@@ -1,6 +1,18 @@
 import React from "react";
 
-const Show = ({ student, interviewer, onEdit, onDelete }) => {
+type ShowProps = {
+  student: string;
+  interviewer: { name: string };
+  onEdit: () => void;
+  onDelete: () => void;
+};
+
+const Show = ({
+  student,
+  interviewer,
+  onEdit,
+  onDelete,
+}: ShowProps): JSX.Element => {
   return (
     <main className="appointment__card appointment__card--show">
       <section className="appointment__card-left">

@@ -1,6 +1,10 @@
 import React from "react";
 
-const Empty = ({ onAdd }) => {
+type EmptyProps = {
+  onAdd: () => void;
+};
+
+const Empty = ({ onAdd }: EmptyProps): JSX.Element => {
   return (
     <main className="appointment__add">
       <img

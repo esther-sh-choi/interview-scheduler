@@ -1,6 +1,10 @@
 import React from "react";
 
-const Header = ({ time }) => {
+type HeaderProps = {
+  time: string;
+};
+
+const Header = ({ time }: HeaderProps): JSX.Element => {
   return (
     <header className="appointment__time">
       <h4 className="text--semi-bold">{time}</h4>
