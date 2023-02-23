@@ -36,15 +36,15 @@
 
 ### InterviewerList
 
-- State:
+- State: NO STATE
 - Props:
 - Used by:
 
 ### InterviewerListItem
 
-- State:
-- Props:
-- Used by:
+- State: NO STATE
+- Props: id (number), name (string), avatar (url), selected (boolean), setInterviewer(function)
+- Used by: InterviewerList
 
 ### Appointment
 

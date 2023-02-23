@@ -1,4 +1,4 @@
-import React, { MouseEventHandler } from "react";
+import React from "react";
 
 import classNames from "classnames";
 
@@ -7,8 +7,10 @@ import "./DayListItem.scss";
 type DayListItemProps = {
   selected: boolean;
   spots: number;
-  name: string;
-  setDay: MouseEventHandler<HTMLLIElement>;
+  name: "Monday" | "Tuesday" | "Wednesday" | "Thursday" | "Friday";
+  setDay: (
+    day: "Monday" | "Tuesday" | "Wednesday" | "Thursday" | "Friday"
+  ) => void;
 };
 
 const DayListItem = (props: DayListItemProps): JSX.Element => {
@@ -32,7 +34,7 @@ const DayListItem = (props: DayListItemProps): JSX.Element => {
   };
 
   return (
-    <li className={dayClass} onClick={setDay}>
+    <li className={dayClass} onClick={() => setDay(name)}>
       <h2 className="text--regular">{name}</h2>
       <h3 className="text--light">{formatSpots()}</h3>
     </li>

@@ -1,9 +1,17 @@
 import React, { useState } from "react";
 
 import InterviewerList from "components/InterviewerList";
-import Button from "components/Button.tsx";
+import Button from "components/Button";
 
-const Form = (props) => {
+type FormProps = {
+  onCancel: () => void;
+  onSave: (student: string, interviewer: number | null) => void;
+  student: string;
+  interviewer: number | null;
+  interviewers: { id: number; name: string; avatar: string }[];
+};
+
+const Form = (props: FormProps): JSX.Element => {
   const [student, setStudent] = useState(props.student || "");
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
 
@@ -39,7 +47,7 @@ const Form = (props) => {
         <InterviewerList
           interviewers={props.interviewers}
           value={interviewer}
-          onChange={setInterviewer}
+          setInterviewer={setInterviewer}
         />
       </section>
       <section className="appointment__card-right">

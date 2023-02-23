@@ -4,7 +4,7 @@ import "./styles.scss";
 import Header from "./Header";
 import Show from "./Show";
 import Empty from "./Empty";
-import Form from "./Form";
+import Form from "./Form.tsx";
 
 import useVisualMode from "hooks/useVisualMode";
 

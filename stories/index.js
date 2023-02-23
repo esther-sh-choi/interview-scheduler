@@ -8,8 +8,8 @@ import "index.scss";
 import Button from "components/Button.tsx";
 import DayListItem from "components/DayListItem.tsx";
 import DayList from "components/DayList.tsx";
-import InterviewerListItem from "components/InterviewerListItem";
-import InterviewerList from "components/InterviewerList";
+import InterviewerListItem from "components/InterviewerListItem.tsx";
+import InterviewerList from "components/InterviewerList.tsx";
 import Appointment from "components/Appointment/index.js";
 import Header from "components/Appointment/Header";
 import Empty from "components/Appointment/Empty";
@@ -17,7 +17,7 @@ import Show from "components/Appointment/Show";
 import Confirm from "components/Appointment/Confirm";
 import Status from "components/Appointment/Status";
 import Error from "components/Appointment/Error";
-import Form from "components/Appointment/Form";
+import Form from "components/Appointment/Form.tsx";
 
 /* -------------------------------------------------------------------------------- */
 
@@ -75,13 +75,13 @@ storiesOf("DayList", module)
     backgrounds: [{ name: "dark", value: "#222f3e", default: true }],
   })
   .add("Monday", () => (
-    <DayList days={days} value={"Monday"} onChange={action("setDay")} />
+    <DayList days={days} value={"Monday"} setDay={action("setDay")} />
   ))
   .add("Tuesday", () => (
-    <DayList days={days} value={"Tuesday"} onChange={action("setDay")} />
+    <DayList days={days} value={"Tuesday"} setDay={action("setDay")} />
   ))
   .add("Wednesday", () => (
-    <DayList days={days} value={"Wednesday"} onChange={action("setDay")} />
+    <DayList days={days} value={"Wednesday"} setDay={action("setDay")} />
   ));
 
 /* -------------------------------------------------------------------------------- */
@@ -97,15 +97,10 @@ storiesOf("InterviewerListItem", module)
     backgrounds: [{ name: "dark", value: "#222f3e", default: true }],
   })
   .add("Unselected", () => (
-    <InterviewerListItem
-      id={interviewer.id}
-      name={interviewer.name}
-      avatar={interviewer.avatar}
-    />
+    <InterviewerListItem name={interviewer.name} avatar={interviewer.avatar} />
   ))
   .add("Selected", () => (
     <InterviewerListItem
-      id={interviewer.id}
       name={interviewer.name}
       avatar={interviewer.avatar}
       selected
@@ -113,10 +108,9 @@ storiesOf("InterviewerListItem", module)
   ))
   .add("Clickable", () => (
     <InterviewerListItem
-      id={interviewer.id}
       name={interviewer.name}
       avatar={interviewer.avatar}
-      setInterviewer={action("setInterviewer")}
+      setInterviewer={() => action("setInterviewer")(interviewer.id)}
     />
   ));
 

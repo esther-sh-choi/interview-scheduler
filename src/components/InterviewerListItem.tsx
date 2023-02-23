@@ -1,10 +1,22 @@
-import React from "react";
+import React, { MouseEventHandler } from "react";
 
 import classNames from "classnames";
 
 import "./InterviewerListItem.scss";
 
-const InterviewerListItem = ({ name, avatar, selected, setInterviewer }) => {
+type InterviewerListItemProps = {
+  name: string;
+  avatar: string;
+  selected: boolean;
+  setInterviewer: MouseEventHandler<HTMLLIElement>;
+};
+
+const InterviewerListItem = ({
+  name,
+  avatar,
+  selected,
+  setInterviewer,
+}: InterviewerListItemProps): JSX.Element => {
   const interviewerClass = classNames("interviewers__item", {
     "interviewers__item--selected": selected,
   });

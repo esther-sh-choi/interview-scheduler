@@ -22,8 +22,7 @@ const DayList = ({ days, value, setDay }: DayListProps): JSX.Element => {
           key={day.id}
           {...day}
           selected={day.name === value}
-          // set the value of the day here instead of DayListItem
-          setDay={() => setDay(day.name)}
+          setDay={setDay}
         />
       ))}
     </ul>
