@@ -1,8 +1,18 @@
 import React from "react";
 
-import Button from "components/Button.tsx";
+import Button from "components/Button";
 
-const Confirm = ({ message, onConfirm, onCancel }) => {
+type ConfirmProps = {
+  message: string;
+  onConfirm: () => void;
+  onCancel: () => void;
+};
+
+const Confirm = ({
+  message,
+  onConfirm,
+  onCancel,
+}: ConfirmProps): JSX.Element => {
   return (
     <main className="appointment__card appointment__card--confirm">
       <h1 className="text--semi-bold">{message}</h1>

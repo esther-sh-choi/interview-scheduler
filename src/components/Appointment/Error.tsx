@@ -1,6 +1,11 @@
 import React from "react";
 
-const Error = ({ message, onClose }) => {
+type ErrorProps = {
+  message: string;
+  onClose: () => void;
+};
+
+const Error = ({ message, onClose }: ErrorProps): JSX.Element => {
   return (
     <main className="appointment__card appointment__card--error">
       <section className="appointment__error-message">

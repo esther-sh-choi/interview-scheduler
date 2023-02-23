@@ -6,8 +6,8 @@ import Button from "components/Button";
 type FormProps = {
   onCancel: () => void;
   onSave: (student: string, interviewer: number | null) => void;
-  student: string;
-  interviewer: number | null;
+  student?: string;
+  interviewer?: number | null;
   interviewers: { id: number; name: string; avatar: string }[];
 };
 

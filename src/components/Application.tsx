@@ -4,7 +4,7 @@ import Axios from "axios";
 
 import "components/Application.scss";
 
-import Appointment from "./Appointment/index.js";
+import Appointment from "./Appointment/index";
 import DayList from "./DayList";
 import {
   getAppointmentsForDay,
@@ -25,7 +25,7 @@ interface AppointmentState {
     [key: number]: {
       id: number;
       time: string;
-      interview: { student: string; interviwer: number };
+      interview: { student: string; interviewer: number };
     };
   };
 }

@@ -10,13 +10,13 @@ import DayListItem from "components/DayListItem.tsx";
 import DayList from "components/DayList.tsx";
 import InterviewerListItem from "components/InterviewerListItem.tsx";
 import InterviewerList from "components/InterviewerList.tsx";
-import Appointment from "components/Appointment/index.js";
+import Appointment from "components/Appointment/index.tsx";
 import Header from "components/Appointment/Header.tsx";
 import Empty from "components/Appointment/Empty.tsx";
 import Show from "components/Appointment/Show.tsx";
-import Confirm from "components/Appointment/Confirm";
-import Status from "components/Appointment/Status";
-import Error from "components/Appointment/Error";
+import Confirm from "components/Appointment/Confirm.tsx";
+import Status from "components/Appointment/Status.tsx";
+import Error from "components/Appointment/Error.tsx";
 import Form from "components/Appointment/Form.tsx";
 
 /* -------------------------------------------------------------------------------- */

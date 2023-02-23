@@ -1,6 +1,10 @@
 import React from "react";
 
-const Status = ({ message }) => {
+type StatusProps = {
+  message: string;
+};
+
+const Status = ({ message }: StatusProps): JSX.Element => {
   return (
     <main className="appointment__card appointment__card--status">
       <img
