@@ -12,7 +12,7 @@ import {
   getInterviewersForDay,
 } from "helpers/selectors";
 
-export default function Application(props) {
+const Application = () => {
   const [state, setState] = useState({
     day: "Monday",
     days: [],
@@ -78,4 +78,6 @@ export default function Application(props) {
       </section>
     </main>
   );
-}
+};
+
+export default Application;

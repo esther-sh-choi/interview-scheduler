@@ -8,37 +8,43 @@ import Form from "./Form";
 
 import useVisualMode from "hooks/useVisualMode";
 
-const Appointment = (props) => {
-  const { time, interview, interviewers } = props;
-
+const Appointment = ({ id, time, interview, interviewers }) => {
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";
   const CREATE = "CREATE";
   const EDIT = "EDIT";
+  const CONFIRM = "CONFIRM";
+  const SAVING = "SAVING";
+  const DELETING = "DELETING";
 
   const { mode, transition, back } = useVisualMode(interview ? SHOW : EMPTY);
 
   const handleSave = (student, interviewer) => {
     console.log(student, interviewer);
-    transition(EDIT);
+    transition(SAVING);
   };
 
   return (
     <article className="appointment">
       <Header time={time} />
       {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
-      {mode === SHOW && (
-        <Show student={interview.student} interviewer={interview.interviewer} />
+      {mode === SHOW && interview && (
+        <Show
+          student={interview.student}
+          interviewer={interview.interviewer}
+          onEdit={() => transition(EDIT)}
+          onDelete={() => transition(CONFIRM)}
+        />
       )}
       {mode === CREATE && (
         <Form interviewers={interviewers} onSave={handleSave} onCancel={back} />
       )}
-      {mode === EDIT && (
+      {mode === EDIT && interview && (
         <Form
           interviewers={interviewers}
           student={interview.student}
-          interviewer={interview.interviewer}
-          onSave={transition(EDIT)}
+          interviewer={interview.interviewer.id}
+          onSave={handleSave}
           onCancel={back}
         />
       )}
