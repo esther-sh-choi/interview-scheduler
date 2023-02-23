@@ -9,13 +9,13 @@ import Form from "./Form";
 import useVisualMode from "hooks/useVisualMode";
 
 type AppointmentProps = {
-  id: number;
+  id?: number | string;
   time: string;
-  interview: {
+  interview?: {
     student: string;
     interviewer: { id: number; name: string; avatar: string };
   };
-  interviewers: { id: number; name: string; avatar: string }[];
+  interviewers?: { id: number; name: string; avatar: string }[];
 };
 
 const Appointment = ({
@@ -51,10 +51,11 @@ const Appointment = ({
           onDelete={() => transition(CONFIRM)}
         />
       )}
-      {mode === CREATE && (
+      {/* Added interviewers because storybook doesn't contain interviewers */}
+      {mode === CREATE && interviewers && (
         <Form interviewers={interviewers} onSave={handleSave} onCancel={back} />
       )}
-      {mode === EDIT && interview && (
+      {mode === EDIT && interview && interviewers && (
         <Form
           interviewers={interviewers}
           student={interview.student}
