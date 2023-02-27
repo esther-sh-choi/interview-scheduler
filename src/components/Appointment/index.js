@@ -13,7 +13,7 @@ import Error from "./Error";
 
 import useVisualMode from "hooks/useVisualMode";
 
-const Appointment = ({ id, time, interview, interviewers }) => {
+const Appointment = ({ id, time, interview, interviewers, bookInterview }) => {
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";
   const CREATE = "CREATE";
@@ -24,36 +24,32 @@ const Appointment = ({ id, time, interview, interviewers }) => {
 
   const { mode, transition, back } = useVisualMode(interview ? SHOW : EMPTY);
 
-  const [selectedInterview, setSelectedInterview] = useState(interview || null);
+  // const [selectedInterview, setSelectedInterview] = useState(interview || null);
   const [loadingMsg, setLoadingMsg] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
 
-  const handleSave = (student, interviewer) => {
-    // console.log(student, interviewer);
+  const save = (name, interviewer) => {
+    const interview = {
+      student: name,
+      interviewer,
+    };
+
     setLoadingMsg("Saving...");
     transition(STATUS);
 
-    Axios.put(`/api/appointments/${id}`, {
-      interview: { student, interviewer },
-    })
-      .then((res) => {
-        const dataObj = JSON.parse(res.config.data);
-        const interviewerId = dataObj.interview.interviewer;
-        const interviewerData = interviewers?.find(
-          (data) => data.id === interviewerId
-        );
-        setSelectedInterview({
-          ...dataObj.interview,
-          interviewer: interviewerData,
-        });
-      })
-      .catch((err) => {
-        transition(ERROR);
-        setErrorMsg(err);
-        back();
-      })
-      .finally(() => transition(SHOW));
+    // id is the appointment id and interview is the object that includes student name and interviewer id.
+    bookInterview(id, interview).then((res) => {
+      if (res) {
+        transition(SHOW);
+      }
+    });
   };
+
+  // const handleSave = (student, interviewer) => {
+  //   // console.log(student, interviewer);
+  //   setLoadingMsg("Saving...");
+  //   transition(STATUS);
+  // };
 
   const handleDelete = () => {
     setLoadingMsg("Deleting...");
@@ -74,23 +70,23 @@ const Appointment = ({ id, time, interview, interviewers }) => {
     <article className="appointment">
       <Header time={time} />
       {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
-      {mode === SHOW && selectedInterview && (
+      {mode === SHOW && (
         <Show
-          student={selectedInterview.student}
-          interviewer={selectedInterview.interviewer}
+          student={interview.student}
+          interviewer={interview.interviewer}
           onEdit={() => transition(EDIT)}
           onDelete={() => transition(CONFIRM)}
         />
       )}
       {mode === CREATE && (
-        <Form interviewers={interviewers} onSave={handleSave} onCancel={back} />
+        <Form interviewers={interviewers} onSave={save} onCancel={back} />
       )}
       {mode === EDIT && interview && (
         <Form
           interviewers={interviewers}
           student={interview.student}
           interviewer={interview.interviewer.id}
-          onSave={handleSave}
+          onSave={save}
           onCancel={back}
         />
       )}

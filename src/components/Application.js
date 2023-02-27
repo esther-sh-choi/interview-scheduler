@@ -19,6 +19,35 @@ const Application = () => {
     appointments: {},
   });
 
+  const bookInterview = (id, interview) => {
+    return Axios.put(`/api/appointments/${id}`, { interview })
+      .then((res) => {
+        console.log(JSON.parse(res.config.data));
+        const interviewData = JSON.parse(res.config.data);
+
+        const appointment = {
+          ...state.appointments[id],
+          interview: { ...interviewData.interview },
+        };
+
+        const appointments = {
+          ...state.appointments,
+          [id]: appointment,
+        };
+
+        setState((prev) => ({ ...prev, appointments }));
+        return true;
+      })
+      .catch((err) => {
+        console.log(err);
+        return false;
+        // transition(ERROR);
+        // setErrorMsg(err);
+        // back();
+      });
+    // .finally(() => transition(SHOW));
+  };
+
   const appointments = getAppointmentsForDay(state, state.day);
   const interviewers = getInterviewersForDay(state, state.day);
 
@@ -31,6 +60,7 @@ const Application = () => {
         time={appointment.time}
         interview={interview}
         interviewers={interviewers}
+        bookInterview={bookInterview}
       />
     );
   });
