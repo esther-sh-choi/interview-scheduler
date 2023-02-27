@@ -12,11 +12,23 @@ export default function useVisualMode(initialMode) {
   };
 
   const back = () => {
+    // if (history.length > 1) {
+    //   const prevHistory = history.slice(0, -1);
+    //   setHistory(prevHistory ? prevHistory : [initialMode]);
+    //   setMode(prevHistory[prevHistory.length - 1]);
+    // }
+
+    let prevHistory = [...history];
     if (history.length > 1) {
-      const prevHistory = history.slice(0, -1);
-      setHistory(prevHistory);
-      setMode(prevHistory[prevHistory.length - 1]);
+      prevHistory.pop();
+    } else {
+      prevHistory = [initialMode];
     }
+
+    const mode = prevHistory[prevHistory.length - 1];
+
+    setHistory(prevHistory);
+    setMode(mode);
   };
 
   return { mode, transition, back };
