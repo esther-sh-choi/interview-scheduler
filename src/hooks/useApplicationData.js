@@ -1,28 +1,33 @@
-import { useState, useEffect } from "react";
+import { useReducer, useEffect } from "react";
+
+import {
+  reducer,
+  SET_APPLICATION_DATA,
+  SET_DAY,
+  SET_INTERVIEW,
+} from "../reducers/ApplicationReducer";
 
 import axios from "axios";
 
 const useApplicationData = () => {
-  const [state, setState] = useState({
+  const [state, dispatch] = useReducer(reducer, {
     day: "Monday",
     days: [],
     appointments: {},
+    interviewers: {},
   });
 
-  // Returns a new days array with the updated spots
-  const updateSpots = (appointments) => {
-    return state.days.map((day) => {
-      let spots = 5;
+  useEffect(() => {
+    const socket = new WebSocket(process.env.REACT_APP_WEBSOCKET_URL);
 
-      for (const appointmentId of day.appointments) {
-        if (appointments[appointmentId].interview) {
-          spots--;
-        }
-      }
+    socket.onmessage = (event) => {
+      dispatch(JSON.parse(event.data));
+    };
 
-      return { ...day, spots };
-    });
-  };
+    return () => {
+      socket.close();
+    };
+  }, []);
 
   const bookInterview = (id, interview) => {
     return new Promise((resolve, reject) => {
@@ -35,19 +40,11 @@ const useApplicationData = () => {
         .then((res) => {
           const interviewData = JSON.parse(res.config.data);
 
-          const appointment = {
-            ...state.appointments[id],
+          dispatch({
+            type: SET_INTERVIEW,
+            id,
             interview: { ...interviewData.interview },
-          };
-
-          const appointments = {
-            ...state.appointments,
-            [id]: appointment,
-          };
-
-          const days = updateSpots(appointments);
-
-          setState((prev) => ({ ...prev, appointments, days }));
+          });
           resolve();
         })
         .catch((err) => {
@@ -61,19 +58,7 @@ const useApplicationData = () => {
       axios
         .delete(`/api/appointments/${id}`)
         .then((res) => {
-          const appointment = {
-            ...state.appointments[id],
-            interview: null,
-          };
-
-          const appointments = {
-            ...state.appointments,
-            [id]: appointment,
-          };
-
-          const days = updateSpots(appointments);
-
-          setState((prev) => ({ ...prev, appointments, days }));
+          dispatch({ type: SET_INTERVIEW, id, interview: null });
           resolve();
         })
         .catch((err) => {
@@ -83,7 +68,7 @@ const useApplicationData = () => {
   };
 
   const setDay = (day) => {
-    setState(Object.assign({}, state, { day }));
+    dispatch({ type: SET_DAY, day });
   };
 
   useEffect(() => {
@@ -92,12 +77,18 @@ const useApplicationData = () => {
       axios.get("/api/appointments"),
       axios.get("/api/interviewers"),
     ]).then((all) =>
-      setState((prev) => ({
-        ...prev,
+      // setState((prev) => ({
+      //   ...prev,
+      //   days: all[0].data,
+      //   appointments: all[1].data,
+      //   interviewers: all[2].data,
+      // }))
+      dispatch({
+        type: SET_APPLICATION_DATA,
         days: all[0].data,
         appointments: all[1].data,
         interviewers: all[2].data,
-      }))
+      })
     );
   }, []);
 
