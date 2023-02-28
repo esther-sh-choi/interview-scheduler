@@ -21,6 +21,7 @@ const useApplicationData = () => {
     const socket = new WebSocket(process.env.REACT_APP_WEBSOCKET_URL);
 
     socket.onmessage = (event) => {
+      console.log(JSON.parse(event.data));
       dispatch(JSON.parse(event.data));
     };
 

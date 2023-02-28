@@ -34,6 +34,8 @@ const reducers = {
 
     const days = updateSpots(state, appointments, id);
 
+    console.log(days);
+
     return { ...state, appointments, days };
   },
 };
