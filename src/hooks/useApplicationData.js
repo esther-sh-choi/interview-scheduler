@@ -1,11 +1,10 @@
 import { useReducer, useEffect } from "react";
 
-import {
-  reducer,
+import reducer, {
   SET_APPLICATION_DATA,
   SET_DAY,
   SET_INTERVIEW,
-} from "../reducers/ApplicationReducer";
+} from "../reducers/application";
 
 import axios from "axios";
 

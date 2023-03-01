@@ -1,8 +1,8 @@
 import { updateSpots } from "utils/updateSpots";
 
-const SET_DAY = "SET_DAY";
-const SET_APPLICATION_DATA = "SET_APPLICATION_DATA";
-const SET_INTERVIEW = "SET_INTERVIEW";
+export const SET_DAY = "SET_DAY";
+export const SET_APPLICATION_DATA = "SET_APPLICATION_DATA";
+export const SET_INTERVIEW = "SET_INTERVIEW";
 
 const reducers = {
   SET_DAY(state, action) {
@@ -54,4 +54,4 @@ function reducer(state, action) {
   }
 }
 
-export { reducer, SET_APPLICATION_DATA, SET_DAY, SET_INTERVIEW };
+export default reducer;
