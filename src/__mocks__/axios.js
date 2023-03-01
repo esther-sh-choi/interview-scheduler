@@ -86,6 +86,15 @@ export default {
     return Promise.resolve({
       status: 204,
       statusText: "No Content",
+      config: {
+        data: '{"interview":{"student":"Lydia Miller-Jones","interviewer":1}}',
+      },
+    });
+  }),
+  delete: jest.fn(() => {
+    return Promise.resolve({
+      status: 204,
+      statusText: "No Content",
     });
   }),
 };

@@ -52,7 +52,6 @@ const Appointment = ({
     bookInterview(id, interview)
       .then(() => transition(SHOW))
       .catch((error) => {
-        // console.log(error);
         transition(ERROR_SAVE, true);
       });
   };
@@ -96,7 +95,7 @@ const Appointment = ({
           onCancel={back}
         />
       )}
-      {mode === SAVING && <Status message="Loading..." />}
+      {mode === SAVING && <Status message="Saving..." />}
       {mode === DELETING && <Status message="Deleting..." />}
       {mode === ERROR_SAVE && (
         <Error
