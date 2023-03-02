@@ -8,6 +8,7 @@ import reducer, {
 
 import axios from "axios";
 
+// A custom hook that returns new state and functions that update state.
 const useApplicationData = () => {
   const [state, dispatch] = useReducer(reducer, {
     // initial state
@@ -40,9 +41,9 @@ const useApplicationData = () => {
   /**
    * Returns the new promise after making an axios put request for booking interview.
    *
-   * @param {object} state The current state of day, days, appointments, and interviewers of the entire app.
-   * @param {object} action The actions contains the action value of day (string -> e.g., "Monday", "Tuesday", etc.).
-   * @return {object} new updated state that includes the newly selected day.
+   * @param {number} id The appointment id of the interview that is being booked/edited.
+   * @param {object} interview Object that contains student name and the interviewer object.
+   * @return {Promise} Promise that resolves when put request is successful and rejects with the error data when failed.
    */
   const bookInterview = (id, interview) => {
     return new Promise((resolve, reject) => {
@@ -68,11 +69,17 @@ const useApplicationData = () => {
     });
   };
 
+  /**
+   * Returns the new promise after making an axios delete request for a booked interview.
+   *
+   * @param {number} id The appointment id of the interview that is being cancelled.
+   * @return {Promise} Promise that resolves when delete request is successful and rejects with the error data when failed.
+   */
   const cancelInterview = (id) => {
     return new Promise((resolve, reject) => {
       axios
         .delete(`/api/appointments/${id}`)
-        .then((res) => {
+        .then(() => {
           dispatch({ type: SET_INTERVIEW, id, interview: null });
           resolve();
         })
@@ -82,10 +89,17 @@ const useApplicationData = () => {
     });
   };
 
+  /**
+   * Dispatch action with value of day with the action.type of SET_DAY.
+   *
+   * @param {string} day The day that is selected by the user from the day list.
+   * @return {undefined} There are no return values.
+   */
   const setDay = (day) => {
     dispatch({ type: SET_DAY, day });
   };
 
+  // Make a request to all three endpoints to get the initial state when loading page the first time.
   useEffect(() => {
     Promise.all([
       axios.get("/api/days"),
