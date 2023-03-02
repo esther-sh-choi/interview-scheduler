@@ -30,11 +30,11 @@ Deployment platforms: Railway, Netlify, CircleCI
 
 #### Websocket: See Changes Real-Time
 
-![websocket](https://github.com/esther-sh-choi/interview-scheduler/blob/master/docs/scheduler1.gif)
+![websocket](https://github.com/esther-sh-choi/interview-scheduler/blob/master/docs/scheduler2.gif)
 
 #### Form Submition, Edit, and Delete
 
-![form handling](https://github.com/esther-sh-choi/interview-scheduler/blob/master/docs/scheduler2.gif)
+![form handling](https://github.com/esther-sh-choi/interview-scheduler/blob/master/docs/scheduler1.gif)
 
 #### Views
 
