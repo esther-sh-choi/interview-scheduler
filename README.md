@@ -7,7 +7,7 @@ They can then enter their name and select the interviewer.
 Once the interview is booked, the number of spots displayed changes.
 Also, with the use of web socket, any other user using this app will see the appointments updated in real-time without having to refresh the page.
 
-This website was built using ReactJS, Axios, Redux, and Web Socket.
+This website was built using ReactJS, Axios, Reducer, and Web Socket.
 The database was cloned from https://github.com/lighthouse-labs/scheduler-api.
 
 This app was thoroughly tested with Storybook, Jest, and Cypress with a coverage of >97%
