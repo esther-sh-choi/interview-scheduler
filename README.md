@@ -19,8 +19,8 @@ Deployment platforms: Railway, Netlify, CircleCI
 
 - [Description](https://github.com/esther-sh-choi/interview-scheduler#interview-scheduler)
 - [Screenshots](https://github.com/esther-sh-choi/interview-scheduler#screenshots)
-  - [Websocket: See Changes Real-Time](https://github.com/esther-sh-choi/interview-scheduler#desktop)
-  - [Form Submition, Edit, and Delete](https://github.com/esther-sh-choi/interview-scheduler#desktop-to-tablet)
+  - [Websocket: See Changes Real-Time](https://github.com/esther-sh-choi/interview-scheduler#websocket-see-changes-real-time)
+  - [Form Submition, Edit, and Delete](https://github.com/esther-sh-choi/interview-scheduler#form-submition-edit-and-delete)
   - [Views](https://github.com/esther-sh-choi/interview-scheduler#views)
 - [Getting Started](https://github.com/esther-sh-choi/interview-scheduler#getting-started)
 - [Testing](https://github.com/esther-sh-choi/interview-scheduler#testing)
@@ -30,9 +30,17 @@ Deployment platforms: Railway, Netlify, CircleCI
 
 #### Websocket: See Changes Real-Time
 
+![websocket](https://github.com/esther-sh-choi/interview-scheduler/blob/master/docs/scheduler1.gif)
+
 #### Form Submition, Edit, and Delete
 
+![form handling](https://github.com/esther-sh-choi/interview-scheduler/blob/master/docs/scheduler2.gif)
+
 #### Views
+
+![form](https://github.com/esther-sh-choi/interview-scheduler/blob/master/docs/form-screen.png)
+![show appointment](https://github.com/esther-sh-choi/interview-scheduler/blob/master/docs/show-screen.png)
+![confirm](https://github.com/esther-sh-choi/interview-scheduler/blob/master/docs/confirm-screen.png)
 
 ## Getting Started
 
